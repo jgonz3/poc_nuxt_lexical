@@ -3035,6 +3035,11 @@ lazystream@^1.0.0:
   dependencies:
     readable-stream "^2.0.5"
 
+lexical@^0.12.6:
+  version "0.12.6"
+  resolved "https://registry.yarnpkg.com/lexical/-/lexical-0.12.6.tgz#6ffd60dcfe770c1a6fdc03c2ffd9e49182d16102"
+  integrity sha512-Nlfjc+k9cIWpOMv7XufF0Mv09TAXSemNAuAqFLaOwTcN+RvhvYTDtVLSp9D9r+5I097fYs1Vf/UYwH2xEpkFfQ==
+
 lilconfig@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/lilconfig/-/lilconfig-3.0.0.tgz#f8067feb033b5b74dab4602a5f5029420be749bc"
