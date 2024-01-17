@@ -1,23 +1,25 @@
 <script lang="ts" setup>
-import {createEditor} from 'lexical';
+import { createEditor } from 'lexical';
 
 const elementRef = ref<HTMLDivElement | null>(null);
 
-const editor = reactive(createEditor({
-  namespace: 'LexicalEditor',
-  editable:true,
-  onError: console.error,
-}))
+const editor = reactive(
+  createEditor({
+    namespace: 'LexicalEditor',
+    editable: true,
+    onError: console.error,
+  }),
+);
 
 onMounted(() => {
   if (elementRef.value) {
-    editor.setRootElement(elementRef.value)
+    editor.setRootElement(elementRef.value);
   }
-})
+});
 
 onBeforeUnmount(() => {
-  editor.setRootElement(null)
-})
+  editor.setRootElement(null);
+});
 </script>
 
 <template>
