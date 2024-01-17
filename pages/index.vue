@@ -2,7 +2,7 @@
 
 <template>
   <main>
-    Index Page
+    <LexicalEditor />
   </main>
 </template>
 
