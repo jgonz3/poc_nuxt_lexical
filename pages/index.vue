@@ -2,7 +2,9 @@
 
 <template>
   <main>
-    <LexicalEditor />
+    <ClientOnly>
+      <LexicalEditor />
+    </ClientOnly>
   </main>
 </template>
 

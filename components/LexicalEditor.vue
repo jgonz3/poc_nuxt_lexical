@@ -1,35 +1,54 @@
-<script lang="ts" setup>
-import { createEditor } from 'lexical';
+<script setup lang="ts">
+import { $getRoot, $getSelection } from 'lexical';
+import type { EditorState, CreateEditorArgs } from 'lexical';
+import { ref } from 'vue';
 
-const elementRef = ref<HTMLDivElement | null>(null);
+import {
+  LexicalAutoFocusPlugin,
+  LexicalComposer,
+  LexicalContentEditable,
+  LexicalHistoryPlugin,
+  LexicalOnChangePlugin,
+  LexicalPlainTextPlugin,
+} from 'lexical-vue';
 
-const editor = reactive(
-  createEditor({
-    namespace: 'LexicalEditor',
-    editable: true,
-    onError: console.error,
-  }),
-);
+const config: CreateEditorArgs = {
+  namespace: 'LexicalEditor',
+  editable: true,
+  onError: console.error,
+  theme: {
+    // Theme styling goes here
+  },
+};
 
-onMounted(() => {
-  if (elementRef.value) {
-    editor.setRootElement(elementRef.value);
-  }
-});
+// When the editor changes, you can get notified via the
+// LexicalOnChangePlugin!
+function onChange(editorState: EditorState) {
+  editorState.read(() => {
+    // Read the contents of the EditorState here.
+    const root = $getRoot();
+    const selection = $getSelection();
 
-onBeforeUnmount(() => {
-  editor.setRootElement(null);
-});
+    console.log(editorState.toJSON());
+  });
+}
+
+// Two-way binding
+const content = ref('');
 </script>
 
 <template>
-  <div ref="elementRef" id="lexical-editor-element" contenteditable="true"></div>
+  <LexicalComposer :initial-config="config">
+    <LexicalPlainTextPlugin>
+      <template #contentEditable>
+        <LexicalContentEditable />
+      </template>
+      <template #placeholder>
+        <div>Enter some text...</div>
+      </template>
+    </LexicalPlainTextPlugin>
+    <LexicalOnChangePlugin v-model="content" @change="onChange" />
+    <LexicalHistoryPlugin />
+    <LexicalAutoFocusPlugin />
+  </LexicalComposer>
 </template>
-
-<style scoped>
-#lexical-editor-element {
-  width: 100%;
-  min-height: 200px;
-  border: 1px solid black;
-}
-</style>
