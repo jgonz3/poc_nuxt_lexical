@@ -1,8 +1,7 @@
 <script lang="ts" setup>
-import { ref } from 'vue';
 import { debounce } from 'lodash';
 
-const editorValue = ref('');
+const editorValue = ref(localStorage.getItem('lexical-editor-value') ?? '');
 
 const saveToLocalStorage = debounce(() => {
   localStorage.setItem('lexical-editor-value', editorValue.value);
@@ -20,5 +19,3 @@ watch(editorValue, () => {
     </ClientOnly>
   </main>
 </template>
-
-<style scoped></style>

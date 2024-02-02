@@ -7,22 +7,42 @@ import {
   LexicalOnChangePlugin,
   LexicalRichTextPlugin,
 } from 'lexical-vue';
-import type { CreateEditorArgs, EditorState } from 'lexical';
+import type { CreateEditorArgs, EditorState, LexicalEditor } from 'lexical';
 
-const editorValue = defineModel({ required: true });
+interface Props {
+  editable?: boolean;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  editable: true,
+});
+const editorValue = defineModel<string>({ required: true });
 
 const config: CreateEditorArgs = {
   namespace: 'LexicalEditor',
-  editable: true,
+  editable: props.editable,
   onError: console.error,
   theme: {},
 };
+
+const editorInstanceRef = ref<LexicalEditor | null>(null);
 
 function onChange(editorState: EditorState) {
   editorState.read(() => {
     editorValue.value = JSON.stringify(editorState.toJSON());
   });
 }
+
+function prepareInitialEditorState() {
+  if (editorInstanceRef.value && editorValue.value) {
+    const parsed = editorInstanceRef.value.parseEditorState(editorValue.value);
+    editorInstanceRef.value.setEditorState(parsed);
+  }
+}
+
+onMounted(() => {
+  prepareInitialEditorState();
+});
 </script>
 
 <template>
@@ -37,6 +57,9 @@ function onChange(editorState: EditorState) {
       <LexicalOnChangePlugin @change="onChange" />
       <LexicalHistoryPlugin />
       <LexicalAutoFocusPlugin />
+
+      <!--   Custom plugins -->
+      <LexicalEditorInstanceExposer v-model="editorInstanceRef" />
     </LexicalComposer>
   </div>
 </template>

@@ -11,8 +11,8 @@
     "format": "prettier --write \"**/*.{js,ts,cjs,vue,json,md,css,scss}\""
   },
   "dependencies": {
-    "lexical": "^0.12.6",
-    "lexical-vue": "^0.7.2",
+    "lexical": "^0.13.1",
+    "lexical-vue": "^0.8.2",
     "lodash": "^4.17.21",
     "yjs": "^13.6.11"
   },
