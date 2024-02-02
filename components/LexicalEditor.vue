@@ -1,54 +1,50 @@
 <script setup lang="ts">
-import { $getRoot, $getSelection } from 'lexical';
-import type { EditorState, CreateEditorArgs } from 'lexical';
-import { ref } from 'vue';
-
 import {
   LexicalAutoFocusPlugin,
   LexicalComposer,
   LexicalContentEditable,
   LexicalHistoryPlugin,
   LexicalOnChangePlugin,
-  LexicalPlainTextPlugin,
+  LexicalRichTextPlugin,
 } from 'lexical-vue';
+import type { CreateEditorArgs, EditorState } from 'lexical';
+
+const editorValue = defineModel({ required: true });
 
 const config: CreateEditorArgs = {
   namespace: 'LexicalEditor',
   editable: true,
   onError: console.error,
-  theme: {
-    // Theme styling goes here
-  },
+  theme: {},
 };
 
-// When the editor changes, you can get notified via the
-// LexicalOnChangePlugin!
 function onChange(editorState: EditorState) {
   editorState.read(() => {
-    // Read the contents of the EditorState here.
-    const root = $getRoot();
-    const selection = $getSelection();
-
-    console.log(editorState.toJSON());
+    editorValue.value = JSON.stringify(editorState.toJSON());
   });
 }
-
-// Two-way binding
-const content = ref('');
 </script>
 
 <template>
-  <LexicalComposer :initial-config="config">
-    <LexicalPlainTextPlugin>
-      <template #contentEditable>
-        <LexicalContentEditable />
-      </template>
-      <template #placeholder>
-        <div>Enter some text...</div>
-      </template>
-    </LexicalPlainTextPlugin>
-    <LexicalOnChangePlugin v-model="content" @change="onChange" />
-    <LexicalHistoryPlugin />
-    <LexicalAutoFocusPlugin />
-  </LexicalComposer>
+  <div class="lexical-editor">
+    <LexicalComposer :initial-config="config">
+      <LexicalRichTextPlugin>
+        <template #contentEditable>
+          <LexicalContentEditable />
+        </template>
+      </LexicalRichTextPlugin>
+
+      <LexicalOnChangePlugin @change="onChange" />
+      <LexicalHistoryPlugin />
+      <LexicalAutoFocusPlugin />
+    </LexicalComposer>
+  </div>
 </template>
+
+<style scoped>
+:deep([contenteditable='true']) {
+  height: 500px;
+  width: 100%;
+  border: 1px solid gray;
+}
+</style>
