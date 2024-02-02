@@ -46,5 +46,7 @@ function onChange(editorState: EditorState) {
   height: 500px;
   width: 100%;
   border: 1px solid gray;
+  padding-left: 16px;
+  padding-right: 16px;
 }
 </style>
