@@ -1,35 +1,75 @@
-<script lang="ts" setup>
-import { createEditor } from 'lexical';
+<script setup lang="ts">
+import {
+  LexicalAutoFocusPlugin,
+  LexicalComposer,
+  LexicalContentEditable,
+  LexicalHistoryPlugin,
+  LexicalOnChangePlugin,
+  LexicalRichTextPlugin,
+} from 'lexical-vue';
+import type { CreateEditorArgs, EditorState, LexicalEditor } from 'lexical';
 
-const elementRef = ref<HTMLDivElement | null>(null);
+interface Props {
+  editable?: boolean;
+}
 
-const editor = reactive(
-  createEditor({
-    namespace: 'LexicalEditor',
-    editable: true,
-    onError: console.error,
-  }),
-);
+const props = withDefaults(defineProps<Props>(), {
+  editable: true,
+});
+const editorValue = defineModel<string>({ required: true });
+
+const config: CreateEditorArgs = {
+  namespace: 'LexicalEditor',
+  editable: props.editable,
+  onError: console.error,
+  theme: {},
+};
+
+const editorInstanceRef = ref<LexicalEditor | null>(null);
+
+function onChange(editorState: EditorState) {
+  editorState.read(() => {
+    editorValue.value = JSON.stringify(editorState.toJSON());
+  });
+}
+
+function prepareInitialEditorState() {
+  if (editorInstanceRef.value && editorValue.value) {
+    const parsed = editorInstanceRef.value.parseEditorState(editorValue.value);
+    editorInstanceRef.value.setEditorState(parsed);
+  }
+}
 
 onMounted(() => {
-  if (elementRef.value) {
-    editor.setRootElement(elementRef.value);
-  }
-});
-
-onBeforeUnmount(() => {
-  editor.setRootElement(null);
+  prepareInitialEditorState();
 });
 </script>
 
 <template>
-  <div ref="elementRef" id="lexical-editor-element" contenteditable="true"></div>
+  <div class="lexical-editor">
+    <LexicalComposer :initial-config="config">
+      <LexicalRichTextPlugin>
+        <template #contentEditable>
+          <LexicalContentEditable />
+        </template>
+      </LexicalRichTextPlugin>
+
+      <LexicalOnChangePlugin @change="onChange" />
+      <LexicalHistoryPlugin />
+      <LexicalAutoFocusPlugin />
+
+      <!--   Custom plugins -->
+      <LexicalEditorInstanceExposer v-model="editorInstanceRef" />
+    </LexicalComposer>
+  </div>
 </template>
 
 <style scoped>
-#lexical-editor-element {
+:deep([contenteditable='true']) {
+  height: 500px;
   width: 100%;
-  min-height: 200px;
-  border: 1px solid black;
+  border: 1px solid gray;
+  padding-left: 16px;
+  padding-right: 16px;
 }
 </style>
