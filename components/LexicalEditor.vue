@@ -8,6 +8,7 @@ import {
   LexicalRichTextPlugin,
 } from 'lexical-vue';
 import type { CreateEditorArgs, EditorState, LexicalEditor } from 'lexical';
+import LexicalToolbar from '~/components/LexicalToolbar.vue';
 
 interface Props {
   editable?: boolean;
@@ -48,6 +49,8 @@ onMounted(() => {
 <template>
   <div class="lexical-editor">
     <LexicalComposer :initial-config="config">
+      <LexicalToolbar />
+
       <LexicalRichTextPlugin>
         <template #contentEditable>
           <LexicalContentEditable />
@@ -64,12 +67,11 @@ onMounted(() => {
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="postcss">
+.lexical-editor {
+  @apply bg-white;
+}
 :deep([contenteditable='true']) {
-  height: 500px;
-  width: 100%;
-  border: 1px solid gray;
-  padding-left: 16px;
-  padding-right: 16px;
+  @apply h-[500px] w-full px-4;
 }
 </style>

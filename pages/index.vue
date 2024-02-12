@@ -14,8 +14,6 @@ watch(editorValue, () => {
 
 <template>
   <main>
-    <ClientOnly>
-      <LexicalEditor v-model="editorValue" />
-    </ClientOnly>
+    <LexicalEditor v-model="editorValue" />
   </main>
 </template>

@@ -1,12 +1,14 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  ssr: false,
   devtools: { enabled: true },
-  routeRules: {
-    '/preview': {
-      ssr: false,
-    },
-    '/': {
-      ssr: false,
+  css: ['~/assets/css/main.css'],
+  postcss: {
+    plugins: {
+      'postcss-import': {},
+      'tailwindcss/nesting': {},
+      tailwindcss: {},
+      autoprefixer: {},
     },
   },
 });
