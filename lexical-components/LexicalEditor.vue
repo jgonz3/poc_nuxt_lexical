@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { onMounted, ref } from 'vue';
+import type { CreateEditorArgs, EditorState, LexicalEditor as LexicalEditorType } from 'lexical';
 import {
   LexicalAutoFocusPlugin,
   LexicalComposer,
@@ -7,8 +9,8 @@ import {
   LexicalOnChangePlugin,
   LexicalRichTextPlugin,
 } from 'lexical-vue';
-import type { CreateEditorArgs, EditorState, LexicalEditor } from 'lexical';
-import LexicalToolbar from '~/components/LexicalToolbar.vue';
+import { Card } from '~/components/ui/card';
+import { LexicalToolbar, LexicalEditorInstanceExposer } from '~/lexical-components';
 
 interface Props {
   editable?: boolean;
@@ -26,7 +28,7 @@ const config: CreateEditorArgs = {
   theme: {},
 };
 
-const editorInstanceRef = ref<LexicalEditor | null>(null);
+const editorInstanceRef = ref<LexicalEditorType | null>(null);
 
 function onChange(editorState: EditorState) {
   editorState.read(() => {
@@ -47,7 +49,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="lexical-editor">
+  <Card class="lexical-editor" style="padding: 0">
     <LexicalComposer :initial-config="config">
       <LexicalToolbar />
 
@@ -64,14 +66,11 @@ onMounted(() => {
       <!--   Custom plugins -->
       <LexicalEditorInstanceExposer v-model="editorInstanceRef" />
     </LexicalComposer>
-  </div>
+  </Card>
 </template>
 
 <style scoped lang="postcss">
-.lexical-editor {
-  @apply bg-white;
-}
 :deep([contenteditable='true']) {
-  @apply h-[500px] w-full px-4;
+  @apply h-[500px] w-full p-4 outline-0;
 }
 </style>

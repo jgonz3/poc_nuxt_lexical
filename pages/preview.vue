@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import LexicalEditor from '~/lexical-components/LexicalEditor.vue';
+
 const editorValue = ref(localStorage.getItem('lexical-editor-value'));
 </script>
 

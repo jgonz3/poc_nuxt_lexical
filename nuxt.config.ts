@@ -2,6 +2,12 @@
 export default defineNuxtConfig({
   ssr: false,
   devtools: { enabled: true },
+  components: {
+    dirs: [],
+  },
+  imports: {
+    autoImport: false,
+  },
   css: ['~/assets/css/main.css'],
   postcss: {
     plugins: {
@@ -10,5 +16,10 @@ export default defineNuxtConfig({
       tailwindcss: {},
       autoprefixer: {},
     },
+  },
+  modules: ['shadcn-nuxt'],
+  shadcn: {
+    prefix: '',
+    componentDir: './components/ui',
   },
 });

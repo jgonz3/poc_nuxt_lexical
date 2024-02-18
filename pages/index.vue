@@ -1,5 +1,7 @@
 <script lang="ts" setup>
+import { ref, watch } from 'vue';
 import { debounce } from 'lodash';
+import LexicalEditor from '~/lexical-components/LexicalEditor.vue';
 
 const editorValue = ref(localStorage.getItem('lexical-editor-value') ?? '');
 
@@ -17,3 +19,9 @@ watch(editorValue, () => {
     <LexicalEditor v-model="editorValue" />
   </main>
 </template>
+
+<style scoped lang="postcss">
+main {
+  @apply p-4;
+}
+</style>
