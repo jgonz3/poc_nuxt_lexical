@@ -1,15 +1,52 @@
 <script setup lang="ts">
-import { useLexicalComposer } from 'lexical-vue';
+import { provide, ref } from 'vue';
+import type { NodeKey } from 'lexical';
 import { Separator } from '~/components/ui/separator';
+import { RichTextToolbarStateUpdater } from '.';
 import * as LexicalCommands from '~/lexical-components/lexical-commands';
+import type { LexicalToolbarContext } from '~/lexical-components/types';
 
-const editor = useLexicalComposer();
+const isBold = ref(false);
+const isItalic = ref(false);
+const isUnderline = ref(false);
+const isStrikethrough = ref(false);
+const isSubscript = ref(false);
+const isSuperscript = ref(false);
+const isCode = ref(false);
+const blockType = ref('paragraph');
+const selectedElementKey = ref<NodeKey | null>(null);
+const fontSize = ref('15px');
+const fontFamily = ref('Arial');
+const fontColor = ref('#000');
+const bgColor = ref('#fff');
+const isRTL = ref(false);
+const codeLanguage = ref('');
+const isLink = ref(false);
 
-console.log(editor);
+provide<LexicalToolbarContext>('lexical-toolbar', {
+  isBold,
+  isItalic,
+  isUnderline,
+  isStrikethrough,
+  isSubscript,
+  isSuperscript,
+  isCode,
+  blockType,
+  selectedElementKey,
+  fontSize,
+  fontFamily,
+  fontColor,
+  bgColor,
+  isRTL,
+  codeLanguage,
+  isLink,
+});
 </script>
 
 <template>
   <div class="lexical-toolbar">
+    <RichTextToolbarStateUpdater />
+
     <LexicalCommands.UndoRedo />
     <Separator class="divider" orientation="vertical" />
 

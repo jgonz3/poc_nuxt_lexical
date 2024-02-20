@@ -9,5 +9,5 @@ const editor = useLexicalComposer();
 model.value = editor;
 </script>
 
-<!-- eslint-disable-next-line vue/valid-template-root -->
+<!-- eslint-disable-next-line -->
 <template />

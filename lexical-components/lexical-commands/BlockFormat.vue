@@ -27,7 +27,7 @@ type BlockFormat =
   | 'Heading 3'
   | 'Bulleted List'
   | 'Numbered List'
-  | 'Checklist'
+  | 'Check List'
   | 'Quote'
   | 'Code Block';
 
@@ -38,7 +38,7 @@ const formats: BlockFormat[] = [
   'Heading 3',
   'Bulleted List',
   'Numbered List',
-  'Checklist',
+  'Check List',
   'Quote',
   'Code Block',
 ];
