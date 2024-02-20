@@ -8,12 +8,14 @@ import {
   COMMAND_PRIORITY_CRITICAL,
 } from 'lexical';
 import { PhArrowCounterClockwise, PhArrowClockwise } from '@phosphor-icons/vue';
+import { useLexicalComposer } from 'lexical-vue';
 import { ToggleGroup, ToggleGroupItem } from '~/components/ui/toggle-group';
 import { useLexicalEditor } from '~/lexical-components/utils';
 import { IS_APPLE } from '~/lexical-components/environment';
 import { Tooltip } from '~/components/custom';
 
-const { editor, isEditable } = useLexicalEditor();
+const editor = useLexicalComposer();
+const { isEditable } = useLexicalEditor();
 const canUndo = ref(false);
 const canRedo = ref(false);
 
@@ -21,7 +23,7 @@ let unregisterUndoCommand: (() => void) | null = null;
 let unregisterRedoCommand: (() => void) | null = null;
 
 onMounted(() => {
-  unregisterUndoCommand = editor.value?.registerCommand(
+  unregisterUndoCommand = editor.registerCommand(
     CAN_UNDO_COMMAND,
     payload => {
       canUndo.value = payload;
@@ -30,7 +32,7 @@ onMounted(() => {
     COMMAND_PRIORITY_CRITICAL
   );
 
-  unregisterRedoCommand = editor.value?.registerCommand(
+  unregisterRedoCommand = editor.registerCommand(
     CAN_REDO_COMMAND,
     payload => {
       canRedo.value = payload;

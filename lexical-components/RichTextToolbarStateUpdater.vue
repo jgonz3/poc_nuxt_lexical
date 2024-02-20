@@ -13,14 +13,10 @@ import { ListNode, $isListNode } from '@lexical/list';
 import { $findMatchingParent, $getNearestNodeOfType, mergeRegister } from '@lexical/utils';
 import { $isCodeNode, CODE_LANGUAGE_MAP } from '@lexical/code';
 import { $isLinkNode } from '@lexical/link';
-import {
-  getSelectedNode,
-  blockTypeToBlockName,
-  useLexicalEditor,
-  useToolbarContext,
-} from './utils';
+import { useLexicalComposer } from 'lexical-vue';
+import { getSelectedNode, blockTypeToBlockName, useToolbarContext } from './utils';
 
-const { editor } = useLexicalEditor();
+const editor = useLexicalComposer();
 
 const {
   bgColor,
@@ -41,7 +37,7 @@ const {
   isSuperscript,
 } = useToolbarContext();
 
-const updateToolbar = () => {
+function updateToolbar() {
   const selection = $getSelection();
   if ($isRangeSelection(selection)) {
     const anchorNode = selection.anchor.getNode();
@@ -58,7 +54,7 @@ const updateToolbar = () => {
     }
 
     const elementKey = element.getKey();
-    const elementDOM = editor.value?.getElementByKey(elementKey);
+    const elementDOM = editor.getElementByKey(elementKey);
 
     // Update text format
     isBold.value = selection.hasFormat('bold');
@@ -99,28 +95,26 @@ const updateToolbar = () => {
     bgColor.value = $getSelectionStyleValueForProperty(selection, 'background-color', '#fff');
     fontFamily.value = $getSelectionStyleValueForProperty(selection, 'font-family', 'Arial');
   }
-};
+}
 
 // unregisters onDestroy using returned callback
 onMounted(() => {
-  if (editor.value) {
-    mergeRegister(
-      editor.value.registerUpdateListener(({ editorState }) => {
-        editorState.read(() => {
-          updateToolbar();
-        });
-      }),
-      editor.value.registerCommand(
-        SELECTION_CHANGE_COMMAND,
-        (_payload, newEditor) => {
-          updateToolbar();
-          editor.value = newEditor;
-          return false;
-        },
-        COMMAND_PRIORITY_CRITICAL
-      )
-    );
-  }
+  mergeRegister(
+    editor.registerUpdateListener(({ editorState }) => {
+      editorState.read(() => {
+        updateToolbar();
+      });
+    }),
+    editor.registerCommand(
+      SELECTION_CHANGE_COMMAND,
+      (_payload, newEditor) => {
+        updateToolbar();
+        // editor = newEditor;
+        return false;
+      },
+      COMMAND_PRIORITY_CRITICAL
+    )
+  );
 });
 </script>
 

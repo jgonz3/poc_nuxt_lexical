@@ -1,8 +1,7 @@
 import type { Ref } from 'vue';
-import type { LexicalEditor, NodeKey } from 'lexical';
+import type { NodeKey } from 'lexical';
 
 export type LexicalEditorContext = {
-  editor: Ref<LexicalEditor>;
   isEditable: Ref<boolean>;
 };
 

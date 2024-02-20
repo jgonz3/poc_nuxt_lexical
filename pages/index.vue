@@ -1,7 +1,16 @@
 <script lang="ts" setup>
 import { ref, watch } from 'vue';
 import { debounce } from 'lodash';
-import LexicalEditor from '~/lexical-components/LexicalEditor.vue';
+import { LexicalComposer } from 'lexical-vue';
+import type { CreateEditorArgs } from 'lexical';
+import { LexicalEditor } from '~/lexical-components';
+
+const config: CreateEditorArgs = {
+  namespace: 'LexicalEditor',
+  editable: true,
+  onError: console.error,
+  theme: {},
+};
 
 const editorValue = ref(localStorage.getItem('lexical-editor-value') ?? '');
 
@@ -16,7 +25,9 @@ watch(editorValue, () => {
 
 <template>
   <main>
-    <LexicalEditor v-model="editorValue" />
+    <LexicalComposer :initial-config="config">
+      <LexicalEditor v-model="editorValue" :editable="config.editable" />
+    </LexicalComposer>
   </main>
 </template>
 
