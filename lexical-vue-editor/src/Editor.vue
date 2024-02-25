@@ -36,9 +36,9 @@ import TwitterPlugin from './plugins/TwitterPlugin/index.vue';
             </div>
           </div>
         </template>
-<!--        <template #placeholder>-->
-<!--          <div class="editor-placeholder">Enter some text...</div>-->
-<!--        </template>-->
+        <!--        <template #placeholder>-->
+        <!--          <div class="editor-placeholder">Enter some text...</div>-->
+        <!--        </template>-->
       </LexicalRichTextPlugin>
 
       <LexicalHistoryPlugin />

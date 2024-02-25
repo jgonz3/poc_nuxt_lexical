@@ -1,6 +1,6 @@
 <!--suppress JSIncompatibleTypesComparison -->
 <script setup lang="ts">
-import 'lexical-vue-editor/assets/style.css'
+import 'lexical-vue-editor/assets/style.css';
 import type { CreateEditorArgs } from 'lexical';
 import { LexicalComposer } from 'lexical-vue';
 import { Editor } from 'lexical-vue-editor';
