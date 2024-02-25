@@ -27,7 +27,7 @@ import {
   $getNearestNodeOfType,
   mergeRegister,
 } from '@lexical/utils';
-import { $isDecoratorBlockNode, INSERT_EMBED_COMMAND, useLexicalComposer } from 'lexical-vue';
+import { $isDecoratorBlockNode, useLexicalComposer, INSERT_EMBED_COMMAND } from 'lexical-vue';
 import { onMounted, onUnmounted, ref } from 'vue';
 import { $isListNode, ListNode } from '@lexical/list';
 import { $isHeadingNode } from '@lexical/rich-text';

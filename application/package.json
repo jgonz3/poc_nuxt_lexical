@@ -15,14 +15,14 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "lexical": "^0.13.1",
-    "lexical-vue": "^0.8.2",
+    "lexical-vue": "*",
+    "lexical-vue-editor": "*",
     "lodash": "^4.17.21",
     "lucide-vue-next": "^0.330.0",
     "radix-vue": "^1.4.3",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
-    "yjs": "^13.6.11",
-    "lexical-vue-editor": "*"
+    "yjs": "^13.6.11"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.202",

@@ -9,8 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "lexical": "^0.13.1",
-    "lexical-vue": "^0.8.2",
+    "lexical": "0.13.1",
+    "lexical-vue": "*",
     "vue": "^3.4.15",
     "y-websocket": ">=1.3.x",
     "yjs": "^13.6.11"

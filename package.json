@@ -3,6 +3,7 @@
   "private": true,
   "workspaces": [
     "application",
+    "lexical-vue",
     "lexical-vue-editor"
   ],
   "scripts": {
