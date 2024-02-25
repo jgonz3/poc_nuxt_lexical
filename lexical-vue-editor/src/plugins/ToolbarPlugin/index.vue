@@ -45,11 +45,11 @@ import BlockFormatDropDown from './BlockFormatDropDown.vue';
 import FontDropDown from './FontDropDown.vue';
 import { blockTypeToBlockName, dropDownActiveClass } from './shared';
 import FontSize from './FontSize.vue';
-import { sanitizeUrl } from '@/utils/url';
-import DropDown from '@/ui/DropDown.vue';
-import DropDownItem from '@/ui/DropDownItem.vue';
-import { getSelectedNode } from '@/utils/getSelectedNode';
-import DropdownColorPicker from '@/ui/DropdownColorPicker.vue';
+import { sanitizeUrl } from 'lexical-vue-editor/utils/url';
+import DropDown from 'lexical-vue-editor/ui/DropDown.vue';
+import DropDownItem from 'lexical-vue-editor/ui/DropDownItem.vue';
+import { getSelectedNode } from 'lexical-vue-editor/utils/getSelectedNode';
+import DropdownColorPicker from 'lexical-vue-editor/ui/DropdownColorPicker.vue';
 
 const emit = defineEmits<{
   (event: 'isLinkEditMode', value: boolean): void;

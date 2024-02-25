@@ -17,10 +17,10 @@ import {
   REMOVE_LIST_COMMAND,
 } from '@lexical/list';
 import { blockTypeToBlockName, dropDownActiveClass } from './shared';
-import DropDown from '@/ui/DropDown.vue';
-import DropDownItem from '@/ui/DropDownItem.vue';
-import { $isTweetNode } from '@/nodes/TweetNode';
-import { $isYouTubeNode } from '@/nodes/YouTubeNode';
+import DropDown from 'lexical-vue-editor/ui/DropDown.vue';
+import DropDownItem from 'lexical-vue-editor/ui/DropDownItem.vue';
+import { $isTweetNode } from 'lexical-vue-editor/nodes/TweetNode';
+import { $isYouTubeNode } from 'lexical-vue-editor/nodes/YouTubeNode';
 
 const props = defineProps<{
   editor: LexicalEditor;

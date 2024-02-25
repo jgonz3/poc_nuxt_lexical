@@ -2,8 +2,8 @@
 import { $patchStyleText } from '@lexical/selection';
 import { $getSelection, type LexicalEditor } from 'lexical';
 import { dropDownActiveClass } from './shared';
-import DropDown from '@/ui/DropDown.vue';
-import DropDownItem from '@/ui/DropDownItem.vue';
+import DropDown from 'lexical-vue-editor/ui/DropDown.vue';
+import DropDownItem from 'lexical-vue-editor/ui/DropDownItem.vue';
 
 const props = withDefaults(
   defineProps<{

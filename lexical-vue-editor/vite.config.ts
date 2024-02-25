@@ -7,7 +7,8 @@ export default defineConfig({
   plugins: [vue()],
   resolve: {
     alias: {
-      '@': '/src',
+      '@': path.resolve(__dirname, './src'),
+      'lexical-vue-editor': path.resolve(__dirname, './src'),
       'lexical-vue': path.resolve(__dirname, '../lexical-vue/src'),
     },
   },

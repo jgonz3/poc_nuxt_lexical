@@ -1,4 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import path from 'path';
+
 export default defineNuxtConfig({
   ssr: false,
   devtools: { enabled: true },
@@ -8,7 +10,7 @@ export default defineNuxtConfig({
   imports: {
     autoImport: false,
   },
-  css: ['~/assets/css/main.css'],
+  // css: ['~/assets/css/main.css'],
   postcss: {
     plugins: {
       'postcss-import': {},
@@ -21,5 +23,9 @@ export default defineNuxtConfig({
   shadcn: {
     prefix: '',
     componentDir: './components/ui',
+  },
+  alias: {
+    'lexical-vue-editor': path.resolve(__dirname, '../lexical-vue-editor/src'),
+    'lexical-vue': path.resolve(__dirname, '../lexical-vue/src'),
   },
 });

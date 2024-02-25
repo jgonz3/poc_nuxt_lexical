@@ -3,8 +3,8 @@ import { ref } from 'vue';
 import type { EmbedMatchResult } from 'lexical-vue';
 import { URL_MATCHER, useLexicalComposer } from 'lexical-vue';
 import type { PlaygroundEmbedConfig } from './shared';
-import DialogActions from '@/ui/DialogActions.vue';
-import Button from '@/ui/Button.vue';
+import DialogActions from 'lexical-vue-editor/ui/DialogActions.vue';
+import Button from 'lexical-vue-editor/ui/Button.vue';
 
 const props = defineProps<{
   embedConfig: PlaygroundEmbedConfig;

@@ -5,7 +5,7 @@ import { COMMAND_PRIORITY_EDITOR, createCommand } from 'lexical';
 
 import { onMounted, onUnmounted } from 'vue';
 import { INSERT_TWEET_COMMAND } from './shared';
-import { $createTweetNode, TweetNode } from '@/nodes/TweetNode';
+import { $createTweetNode, TweetNode } from 'lexical-vue-editor/nodes/TweetNode';
 
 const editor = useLexicalComposer();
 

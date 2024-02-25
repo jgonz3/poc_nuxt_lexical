@@ -11,7 +11,7 @@ import {
 
 import EmojisPlugin from './plugins/EmojisPlugin.vue';
 import EmojiPickerPlugin from './plugins/EmojiPickerPlugin.vue';
-import TreeViewPlugin from './plugins/TreeViewPlugin.vue';
+// import TreeViewPlugin from './plugins/TreeViewPlugin.vue';
 import ToolbarPlugin from './plugins/ToolbarPlugin/index.vue';
 import CodeHighlightPlugin from './plugins/CodeHighlightPlugin.vue';
 import ListMaxIndentLevelPlugin from './plugins/ListMaxIndentLevelPlugin.vue';
@@ -27,7 +27,7 @@ import TwitterPlugin from './plugins/TwitterPlugin/index.vue';
 <template>
   <ToolbarPlugin />
   <div class="editor-container">
-    <div className="editor-inner">
+    <div class="editor-inner">
       <LexicalRichTextPlugin>
         <template #contentEditable>
           <div class="editor-scroller">
@@ -36,13 +36,13 @@ import TwitterPlugin from './plugins/TwitterPlugin/index.vue';
             </div>
           </div>
         </template>
-        <template #placeholder>
-          <div class="editor-placeholder">Enter some text...</div>
-        </template>
+<!--        <template #placeholder>-->
+<!--          <div class="editor-placeholder">Enter some text...</div>-->
+<!--        </template>-->
       </LexicalRichTextPlugin>
+
       <LexicalHistoryPlugin />
       <AutoEmbedPlugin />
-      <TreeViewPlugin />
       <LexicalAutoFocusPlugin />
       <CodeHighlightPlugin />
       <LexicalListPlugin />

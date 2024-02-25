@@ -4,7 +4,7 @@ import { h } from 'vue';
 import AutoEmbedDialog from './AutoEmbedDialog.vue';
 import { EmbedConfigs } from './shared';
 import type { PlaygroundEmbedConfig } from './shared';
-import useModal from '@/composables/useModal';
+import useModal from 'lexical-vue-editor/composables/useModal';
 
 function getMenuOptions(
   activeEmbedConfig: PlaygroundEmbedConfig,
@@ -58,7 +58,7 @@ function openEmbedModal(embedConfig: PlaygroundEmbedConfig) {
               class="item"
               :class="{ selected: selectedIndex === i }"
               @click="
-                {
+                () => {
                   setHighlightedIndex(i);
                   selectOptionAndCleanUp(option);
                 }

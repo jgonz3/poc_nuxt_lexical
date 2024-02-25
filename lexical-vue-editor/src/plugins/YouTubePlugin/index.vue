@@ -5,7 +5,7 @@ import { COMMAND_PRIORITY_EDITOR } from 'lexical';
 
 import { onMounted, onUnmounted } from 'vue';
 import { INSERT_YOUTUBE_COMMAND } from './shared';
-import { $createYouTubeNode, YouTubeNode } from '@/nodes/YouTubeNode';
+import { $createYouTubeNode, YouTubeNode } from 'lexical-vue-editor/nodes/YouTubeNode';
 
 const editor = useLexicalComposer();
 

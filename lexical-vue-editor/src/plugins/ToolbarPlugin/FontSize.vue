@@ -205,13 +205,13 @@ input[type='number']::-webkit-inner-spin-button {
 }
 
 .add-icon {
-  background-image: url(@/assets/images/icons/add-sign.svg);
+  background-image: url(lexical-vue-editor/assets/images/icons/add-sign.svg);
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .minus-icon {
-  background-image: url(@/assets/images/icons/minus-sign.svg);
+  background-image: url(lexical-vue-editor/assets/images/icons/minus-sign.svg);
   background-repeat: no-repeat;
   background-position: center;
 }

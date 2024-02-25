@@ -5,6 +5,9 @@
     "moduleResolution": "bundler",
     "paths": {
       "@/*": ["src/*"],
+      "lexical-vue-editor": ["src"],
+      "lexical-vue-editor/*": ["src/*"],
+      "lexical-vue": ["../lexical-vue/src"],
     },
     "allowImportingTsExtensions": true,
     "noEmit": true,
