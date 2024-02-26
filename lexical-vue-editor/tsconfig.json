@@ -1,0 +1,16 @@
+{
+  "extends": "../lexical-vue/tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "moduleResolution": "bundler",
+    "paths": {
+      "@/*": ["src/*"],
+      "lexical-vue-editor": ["src"],
+      "lexical-vue-editor/*": ["src/*"],
+      "lexical-vue": ["../lexical-vue/src"],
+    },
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+  },
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+}
