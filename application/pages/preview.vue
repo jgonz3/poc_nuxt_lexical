@@ -10,7 +10,7 @@ function onEditorUpdate(editorState: EditorState) {
 </script>
 
 <template>
-  <LexicalEditor :editor-state="localEditorState" @update="onEditorUpdate" />
+  <LexicalEditor :editable="false" :editor-state="localEditorState" @update="onEditorUpdate" />
 </template>
 
 <style scoped></style>
